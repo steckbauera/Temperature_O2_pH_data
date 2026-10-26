@@ -39,8 +39,8 @@ df$pHtot_25C <- pHinsi(
   pH = df$pHtot,
   ALK = df$TA,
   pHscale = "T",
-  Tlab = df$Temperature,
-  Tinsi = 25,
+  Tlab = 25,
+  Tinsi = df$Temperature,
   S = df$Salinity,
   k1k2 = "w14"
 )
