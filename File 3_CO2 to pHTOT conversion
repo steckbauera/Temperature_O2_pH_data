@@ -1,0 +1,28 @@
+# ============================================================
+# Calculate carbonate chemistry from pCO2 and total alkalinity
+# ============================================================
+
+library(seacarb)
+
+# Input data: df
+# Required columns:
+# pCO2, TA_average, Salinity, Temperature
+#
+# pCO2: microatmospheres (µatm)
+# TA_average: µmol/kg (converted to mol/kg)
+# Salinity: practical salinity
+# Temperature: degrees Celsius (°C)
+
+# Calculate carbonate system parameters
+object_carb <- carb(
+  flag = 24,                              # pCO2 and total alkalinity
+  var1 = df$pCO2,
+  var2 = df$TA_average * 1e-6,
+  S = df$Salinity,
+  T = df$Temperature,
+  k1k2 = "l",                             # Lueker et al. (2000)
+  pHscale = "T",                          # Total pH scale
+  kf = "dg",                              # Dickson and Riley (1979)
+  ks = "d",                               # Dickson (1990)
+  b = "l10"                               # Lee et al. (2010)
+)
